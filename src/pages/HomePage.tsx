@@ -1,4 +1,10 @@
+import BooksTable from "../components/BooksTable";
+
 const HomePage = () => {
-  return <></>;
+  return (
+    <>
+      <BooksTable />
+    </>
+  );
 };
 export default HomePage;
