@@ -2,7 +2,7 @@ import { lazy } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const HomePage = lazy(() => import("./pages/Home"));
+const HomePage = lazy(() => import("./pages/HomePage"));
 const AddBookPage = lazy(() => import("./pages/AddBookPage"));
 
 function App() {
