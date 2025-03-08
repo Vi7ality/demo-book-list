@@ -1,10 +1,10 @@
 import BooksTable from "../components/BooksTable";
 
-const HomePage = () => {
+const Dashboard = () => {
   return (
     <>
       <BooksTable />
     </>
   );
 };
-export default HomePage;
+export default Dashboard;
