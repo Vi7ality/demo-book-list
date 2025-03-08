@@ -1,0 +1,32 @@
+.panel {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #e0e0e0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #d6d6d6;
+  }
+}
+
+.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}

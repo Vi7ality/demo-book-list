@@ -6,4 +6,5 @@ export type bookType = {
   createDate: string;
   modifyDate: string;
   id: string;
+  active: boolean;
 };

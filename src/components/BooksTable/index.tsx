@@ -4,18 +4,24 @@ import TableHeader from "../TableHeader";
 import TableRow from "../TableRow";
 import { useBookContext } from "../../context/BookContext";
 import styles from "./BooksTable.module.scss";
+import FilterPanel from "../FilterPanel";
+import { bookType } from "../../types/bookType";
 
 const BooksTable = () => {
   const { books, loading } = useBookContext();
   const [sortConfig, setSortConfig] = useState<{
-    key: keyof any;
+    key: keyof bookType;
     direction: "asc" | "desc";
   } | null>(null);
+  const [filter, setFilter] = useState("all");
+  const filteredBooks = books.filter((book) =>
+    filter === "all" ? true : filter === "active" ? book.active : !book.active
+  );
 
   const sortedBooks = useMemo(() => {
-    if (!sortConfig || !books) return books;
-    const sortedEvents = [...books];
-    sortedEvents.sort((a, b) => {
+    if (!sortConfig || !filteredBooks) return filteredBooks;
+    const sortBooks = [...filteredBooks];
+    sortBooks.sort((a, b) => {
       const valueA = a[sortConfig.key];
       const valueB = b[sortConfig.key];
 
@@ -27,10 +33,10 @@ const BooksTable = () => {
       }
       return 0;
     });
-    return sortedEvents;
-  }, [books, sortConfig]);
+    return sortBooks;
+  }, [filteredBooks, sortConfig]);
 
-  const handleSort = (key: keyof any) => {
+  const handleSort = (key: keyof bookType) => {
     let direction: "asc" | "desc" = "asc";
     if (sortConfig && sortConfig.key === key && sortConfig.direction === "asc") {
       direction = "desc";
@@ -45,8 +51,10 @@ const BooksTable = () => {
       </Container>
     );
   }
+
   return (
     <Container>
+      <FilterPanel filter={filter} setFilter={setFilter} />
       <table className={styles.table}>
         <TableHeader handleSort={handleSort} />
         <tbody>
