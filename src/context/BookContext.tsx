@@ -6,6 +6,9 @@ interface IDataContext {
   loading: boolean;
   error: string | null;
   refetch: () => void;
+  createBook: (newBook: bookType) => Promise<void>;
+  //   editBook: (id: string, updatedBook: Partial<bookType>) => Promise<void>;
+  //   deleteBook: (id: string) => Promise<void>;
 }
 
 const BookContext = createContext<IDataContext | null>(null);
@@ -33,12 +36,29 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const createBook = async (newBook: bookType) => {
+    try {
+      const response = await fetch(`${API_URL}/books`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBook),
+      });
+
+      if (!response.ok) throw new Error("Failed to create book");
+
+      const data = await response.json();
+      setBooks((prev) => [...prev, data]);
+    } catch (error) {
+      console.error("Failed to create book", error);
+    }
+  };
+
   useEffect(() => {
     fetchBooks();
   }, []);
 
   return (
-    <BookContext.Provider value={{ books, loading, error, refetch: fetchBooks }}>
+    <BookContext.Provider value={{ books, loading, error, refetch: fetchBooks, createBook }}>
       {children}
     </BookContext.Provider>
   );
@@ -47,7 +67,7 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 export const useBookContext = () => {
   const context = useContext(BookContext);
   if (!context) {
-    throw new Error("useAppContext must be used within an AppProvider");
+    throw new Error("useBookContext must be used within an BookProvider");
   }
   return context;
 };
