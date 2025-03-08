@@ -31,26 +31,26 @@ const EditBookPage = () => {
     try {
       await editBook(bookID, {
         ...formData,
-        modifyDate: date,
+        modifiedAt: date,
       });
       navigate("/");
     } catch (error) {
       console.error("Failed to create event:", error);
     }
   };
-  const getBookInfo = async () => {
-    if (!bookID) {
-      console.log("book id is missing");
-      return;
-    }
-    const bookInfo = await getBookByID(bookID);
-    console.log("bookInfo", bookInfo);
-    setFormData(bookInfo);
-  };
 
   useEffect(() => {
+    const getBookInfo = async () => {
+      if (!bookID) {
+        console.log("book id is missing");
+        return;
+      }
+      const bookInfo = await getBookByID(bookID);
+      console.log("bookInfo", bookInfo);
+      setFormData(bookInfo);
+    };
     getBookInfo();
-  }, []);
+  }, [bookID, getBookByID]);
   return (
     <div className={styles.EditBookPage}>
       <h1>Add New Book</h1>

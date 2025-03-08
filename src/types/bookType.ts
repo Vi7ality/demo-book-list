@@ -3,8 +3,8 @@ export type bookType = {
   author: string;
   category: string;
   ISBN: number;
-  createDate: string;
-  modifyDate: string;
+  createdAt: string;
+  modifiedAt: string;
   id: string;
   active: boolean;
 };

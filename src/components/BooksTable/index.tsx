@@ -66,9 +66,10 @@ const BooksTable = () => {
                 author={book.author}
                 category={book.category}
                 ISBN={book.ISBN}
-                createDate={book.createDate}
-                modifyDate={book.modifyDate}
+                createDate={book.createdAt}
+                modifyDate={book.modifiedAt}
                 id={book.id}
+                active={book.active}
               />
             ))}
         </tbody>

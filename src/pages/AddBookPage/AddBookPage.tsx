@@ -36,8 +36,9 @@ const AddBookPage = () => {
       await createBook({
         ...formData,
         id: generateID(),
-        createDate: date,
-        modifyDate: date,
+        createdAt: date,
+        modifiedAt: date,
+        active: true,
       });
       navigate("/");
     } catch (error) {

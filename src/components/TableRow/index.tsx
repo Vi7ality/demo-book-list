@@ -4,6 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { useBookContext } from "../../context/BookContext";
 import { MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
 interface TableRowProps {
   title: string;
@@ -13,6 +14,7 @@ interface TableRowProps {
   createDate: string;
   modifyDate: string;
   id: string;
+  active: boolean;
 }
 
 const TableRow: React.FC<TableRowProps> = ({
@@ -23,13 +25,17 @@ const TableRow: React.FC<TableRowProps> = ({
   createDate,
   modifyDate,
   id,
+  active,
 }) => {
-  const { deleteBook } = useBookContext();
+  const { deleteBook, editBook } = useBookContext();
 
   const handleDeleteBook = async () => {
-    deleteBook(id);
+    await deleteBook(id);
   };
 
+  const toggleActiveBook = async () => {
+    await editBook(id, { active: !active });
+  };
   return (
     <tr className={styles.tableRow}>
       <td>
@@ -47,6 +53,9 @@ const TableRow: React.FC<TableRowProps> = ({
         <Link to={`edit/${id}`} className={styles.deleteBtn} title="Edit book">
           <MdEdit style={{ width: "20px", height: "20px" }} />
         </Link>
+        <button onClick={toggleActiveBook} title={active ? "Deactivate" : "Re-Activate"}>
+          {active ? <FaMinus /> : <FaPlus />}
+        </button>
       </td>
     </tr>
   );
