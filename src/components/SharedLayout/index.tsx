@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
+import Footer from "../Footer";
 
 const SharedLayout = () => {
   return (
@@ -22,6 +23,7 @@ const SharedLayout = () => {
             <Outlet />
           </Suspense>
         </main>
+        <Footer />
       </div>
     </>
   );

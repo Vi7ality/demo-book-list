@@ -1,0 +1,24 @@
+.footer {
+  background-color: #2d3748;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.footerText {
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: center;
+}
+
+.footerLink {
+  color: #63b3ed;
+  text-decoration: none;
+  color: yellow;
+  margin-left: 5px;
+}
+
+.footerLink:hover {
+  color: orange;
+}
