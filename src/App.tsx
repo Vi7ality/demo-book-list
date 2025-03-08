@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const AddBookPage = lazy(() => import("./pages/AddBookPage"));
+const AddBookPage = lazy(() => import("./pages/AddBookPage/AddBookPage"));
 
 function App() {
   return (
