@@ -27,6 +27,11 @@ const AddBookPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.title || !formData.author || !formData.category || !formData.ISBN) {
+      alert("Please, fill all form fields");
+      return;
+    }
+
     try {
       await createBook({
         ...formData,

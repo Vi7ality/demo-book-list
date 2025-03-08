@@ -11,6 +11,7 @@ const BooksTable = () => {
     key: keyof any;
     direction: "asc" | "desc";
   } | null>(null);
+
   const sortedBooks = useMemo(() => {
     if (!sortConfig || !books) return books;
     const sortedEvents = [...books];
@@ -28,6 +29,7 @@ const BooksTable = () => {
     });
     return sortedEvents;
   }, [books, sortConfig]);
+
   const handleSort = (key: keyof any) => {
     let direction: "asc" | "desc" = "asc";
     if (sortConfig && sortConfig.key === key && sortConfig.direction === "asc") {

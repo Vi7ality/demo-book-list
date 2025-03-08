@@ -28,7 +28,7 @@ const BookForm = ({ handleSubmit, handleChange, formData }: BookFormProps) => {
         <input type="number" name="ISBN" value={formData.ISBN} onChange={handleChange} />
       </label>
 
-      <button type="submit">Add Event</button>
+      <button type="submit">Add Book</button>
     </form>
   );
 };
