@@ -23,9 +23,7 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
       const data = await response.json();
-      console.log("books", data);
       setBooks(data);
     } catch (error) {
       setError("Failed to fetch books");

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Container from "../Container";
 import TableHeader from "../TableHeader";
 import TableRow from "../TableRow";
 import { useBookContext } from "../../context/BookContext";
+import styles from "./BooksTable.module.scss";
 
 const BooksTable = () => {
   const { books, loading } = useBookContext();
@@ -10,6 +11,23 @@ const BooksTable = () => {
     key: keyof any;
     direction: "asc" | "desc";
   } | null>(null);
+  const sortedBooks = useMemo(() => {
+    if (!sortConfig || !books) return books;
+    const sortedEvents = [...books];
+    sortedEvents.sort((a, b) => {
+      const valueA = a[sortConfig.key];
+      const valueB = b[sortConfig.key];
+
+      if (valueA < valueB) {
+        return sortConfig.direction === "asc" ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sortConfig.direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+    return sortedEvents;
+  }, [books, sortConfig]);
   const handleSort = (key: keyof any) => {
     let direction: "asc" | "desc" = "asc";
     if (sortConfig && sortConfig.key === key && sortConfig.direction === "asc") {
@@ -27,11 +45,11 @@ const BooksTable = () => {
   }
   return (
     <Container>
-      <table>
+      <table className={styles.table}>
         <TableHeader handleSort={handleSort} />
         <tbody>
           {books &&
-            books.map((book) => (
+            sortedBooks.map((book) => (
               <TableRow
                 key={book.id}
                 title={book.title}
