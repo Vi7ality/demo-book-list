@@ -7,7 +7,7 @@ import BookForm from "../../components/BookForm";
 import { bookType } from "../../types/bookType";
 
 const EditBookPage = () => {
-  const { getBookByID, editBook } = useBookContext();
+  const { editBook } = useBookContext();
   const [formData, setFormData] = useState<Partial<bookType> | null>(null);
   const { bookID } = useParams<{ bookID: string }>();
   const navigate = useNavigate();
@@ -40,6 +40,21 @@ const EditBookPage = () => {
   };
 
   useEffect(() => {
+    const getBookByID = async (id: string): Promise<Partial<bookType> | null> => {
+      try {
+        const response = await fetch(
+          `https://my-json-server.typicode.com/vi7ality/fake-json-books/books/${id}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data; // Return valid data
+      } catch (error) {
+        console.error(error);
+        return null; // Return null in case of failure
+      }
+    };
     const getBookInfo = async () => {
       if (!bookID) {
         console.log("book id is missing");
@@ -50,7 +65,7 @@ const EditBookPage = () => {
       setFormData(bookInfo);
     };
     getBookInfo();
-  }, [bookID, getBookByID]);
+  }, [bookID]);
   return (
     <div className={styles.EditBookPage}>
       <h1>Add New Book</h1>
