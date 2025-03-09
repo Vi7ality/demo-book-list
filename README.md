@@ -1,54 +1,79 @@
-# React + TypeScript + Vite
+# Demo-book-list
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![GitHub Pages Deployment](https://img.shields.io/badge/GitHub%20Pages-Deploy-success)
 
-Currently, two official plugins are available:
+A simple book list management application built with React and Vite, allowing users to view, add, edit, and delete book info using fake API. This project is deployed using GitHub Pages.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Changes are faked and aren't persisted (just like JSONPlaceholder).
+Requests are cached (1 minute).
+Read more: https://my-json-server.typicode.com/
 
-## Expanding the ESLint configuration
+## Table of Contents
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Demo](#demo)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Scripts](#scripts)
+- [Deploying to GitHub Pages](#deploying-to-github-pages)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Demo
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Check out the live demo of the project [here](https://demo-book-list-wine.vercel.app/).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Features
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- View a list of events
+- Add new events
+- Edit existing events
+- Delete events
+- Responsive design for mobile and desktop
+
+## Tech Stack
+
+- **Frontend:**
+
+  - React
+  - TypeScript
+  - Vite
+  - React Router
+  - SCSS Modules
+
+- **Backend:**
+  - fakeAPI (used for simulating API requests) https://my-json-server.typicode.com/
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js and npm installed on your machine.
+
+### Installation
+
+1. **Clone the repository:**
+
+   \`\`\`bash
+   git clone https://github.com/vi7ality/demo-book-list.git
+   cd demo-book-list
+   \`\`\`
+
+2. **Install dependencies:**
+
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+3. **Start the development server:**
+
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+   Your app should now be running on [http://localhost:5173](http://localhost:5173).
+
+## Scripts
+
+- **\`npm run dev\`**: Starts the development server.
+- **\`npm run build\`**: Builds the app for production.
+- **\`npm run preview\`**: Previews the production build locally.
+- **\`npm run deploy\`**: Deploys the build to GitHub Pages.
