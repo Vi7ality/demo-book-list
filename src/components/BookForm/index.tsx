@@ -1,4 +1,3 @@
-import { FormEvent } from "react";
 import { bookType } from "../../types/bookType";
 import styles from "./BookForm.module.scss";
 
@@ -19,8 +18,10 @@ const bookCategories = [
 ];
 
 interface BookFormProps {
-  handleSubmit(e: FormEvent<Element>): void;
-  handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void;
+  handleSubmit(e: React.FormEvent<Element>): void;
+  handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ): void;
   formData: Partial<bookType>;
 }
 
