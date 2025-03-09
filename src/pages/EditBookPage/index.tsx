@@ -27,16 +27,16 @@ const EditBookPage = () => {
       alert("Please, fill all form fields");
       return;
     }
-
-    try {
-      await editBook(bookID, {
-        ...formData,
-        modifiedAt: date,
-      });
-      navigate("/");
-    } catch (error) {
-      console.error("Failed to create event:", error);
-    }
+    if (bookID)
+      try {
+        await editBook(bookID, {
+          ...formData,
+          modifiedAt: date,
+        });
+        navigate("/");
+      } catch (error) {
+        console.error("Failed to create event:", error);
+      }
   };
 
   useEffect(() => {
