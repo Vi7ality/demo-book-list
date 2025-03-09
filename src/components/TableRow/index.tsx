@@ -53,7 +53,11 @@ const TableRow: React.FC<TableRowProps> = ({
         <Link to={`edit/${id}`} className={styles.deleteBtn} title="Edit book">
           <MdEdit style={{ width: "20px", height: "20px" }} />
         </Link>
-        <button onClick={toggleActiveBook} title={active ? "Deactivate" : "Re-Activate"}>
+        <button
+          className={styles.reactivateBtn}
+          onClick={toggleActiveBook}
+          title={active ? "Deactivate" : "Re-Activate"}
+        >
           {active ? <FaMinus /> : <FaPlus />}
         </button>
       </td>
